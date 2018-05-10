@@ -1,0 +1,32 @@
+*{
+    /* background-color: #1395ba; */
+    background-color: #7F4343;
+    color: #FFFFFF;
+    font-family: 'Oswald' , sans-serif;
+}
+
+#logoHeader{
+    margin: 0px;
+    padding: 30px;
+    margin-bottom: 50px;
+    border-bottom: solid white;
+}
+
+#welcomeDesc, #searchBox{
+    text-align: center;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+#input-form{
+    width: 400px;
+    height: 40px;
+    font-size: 24px;
+}
+
+#searchButton{
+    height: 47px;
+    font-size: 24px;
+}
+
+
