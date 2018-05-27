@@ -1,50 +1,57 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
-    <title>Yelp-Up!</title>
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <title>Api-Hack Capstone</title>
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <link rel="stylesheet" type="text/css" medua="screen" href="results.css"> 
+    <link rel="stylesheet" type="text/css" media="screen" href="media.css">
     <link href="https://fonts.googleapis.com/css?family=Oswald|Skranji" rel="stylesheet">
 </head>
+
 <body style="margin: 0;">
+
+    <!-- LOGO AREA -->
     <header role="banner" id="logoHeader">
-       <h1 style="text-align: center; font-family: 'Skranji', cursive; font-size: 4em;
-       ">Yelp-Up!</h1>
+        <h1 style="text-align: center; font-family: 'Skranji', cursive; font-size: 4em;
+       ">Four-Up</h1>
     </header>
+
     <main>
-        <header id="welcomeDesc">
-            <h2>Welcome!</h2>
-            <p>Praesent vehicula auctor quam. Nunc vel orci ultricies quam sodales imperdiet. Pellentesque ultricies aliquam neque sed euismod.
-                 Aliquam risus mauris, tempor non fringilla id, feugiat sed leo. Donec eget odio eu neque molestie condimentum vel ut metus.</p>
+        <!-- WELCOME AND INSTRUCTIONS -->
+        <header id="welcomeDesc" role="heading">
+            <h2 style="font-size: 3em;">Welcome!</h2>
+            <p style="font-size: 25px;">This app is a mix of the Meetup and Foursquare APIs and with the help of Google Maps! It is used to search for
+                meetups within your area and will also show the surrounding light food or drink places near the meetup! Red markers represent the meetups
+                while green markers reprenset the food or drink places.
+            </p>
         </header>
-        
-        <section id="searchBox">
+
+        <!-- SEARCHBOX  -->
+        <section id="searchBox" role="searchbox">
             <h2>Please input a meetup you would like to go!</h2>
             <div id="searchBarContainer">
-                <form action="#" id="search-form">
-                    <input type="text" id="input-form">
-                    <button id="searchButton" >Find</button>
+                <form action="#" id="search-form" style="margin-bottom: 30px">
+                    <input type="text" id="input-form" class="searchMobile">
+                    <button id="searchButton" class="searchMobile">Find</button>
                 </form>
             </div>
         </section>
 
-        <section id="resultsArea">
-              
-        </section>
-
-        <div id="map" style="width:1000px;height:600px; margin:0px auto;">
+        <!-- MAP AREA -->
+        <div id="map" aria-live="polite">
 
         </div>
 
-    </main>
-   
-    
-</body>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQDYRHABdT_J5mNVNfuG0txLjxWhIjLpo"
-    async defer></script>
+        <!-- LINE BREAK -->
+        <hr>
 
+    </main>
+
+</body>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQDYRHABdT_J5mNVNfuG0txLjxWhIjLpo" async defer></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="app.js"></script>
+
 </html>

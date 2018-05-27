@@ -1,0 +1,21 @@
+@media only screen and (max-width: 1020px){
+   #map{
+       width: 100%;
+   }
+
+}
+
+@media only screen and (max-width: 480px){
+    #searchBox{
+        padding: 0px;
+    }
+
+    #input-form{
+        width: 100%;
+    }
+
+    .searchMobile{
+        width: 100%;
+    }
+}
+
