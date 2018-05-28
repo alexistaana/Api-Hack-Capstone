@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
 	//CONSTANTS FOR API QUERIES
 	const MEETUP_API_KEY = 'f4d566a3c5e5a34b3a1c374d26674c';
 	const MEETUP_SEARCH_URL = 'https://api.meetup.com/find/upcoming_events';
@@ -8,36 +7,80 @@ $(document).ready(function () {
 	const FOURSQUARE_APP_ID = 'YM3HNDZMFJVFKCYLPRZ3RLGDHUREH5WMTREMZOUYBJ4TCQG2';
 	const FOURSQUARE_SEARCH_URL = 'https://api.foursquare.com/v2/venues/search';
 
+	const GEOLOCATION_URL = 'http://ip-api.com/json'
+
 	const FOOD_LOCATION_IMAGE = 'http://www.clker.com/cliparts/R/g/O/v/U/h/google-maps-marker-for-residencelamontagne-hi.png';
 
-	//OPTIONS FOR MAP
-	let options = {
-		zoom: 10,
-		center: { lat: 33.4269444, lng: -117.6111111 },
-	};
+	//DECLARE MAP VARIABLE
+	let map;
+	let geolocationData
 
-	//INITIALIZES MAP
-	let map = new google.maps.Map(document.getElementById('map'), options);
+	//GETS GEOLOCATION OF USER
+	function GetGeolocation(callback) {
+		$.getJSON(GEOLOCATION_URL, callback)
+	}
+
+	// GetGeolocation(displayGeolocation);
+
+	// let options = {
+	// 	zoom: 10,
+	// 	center: { lat: geolocationData.lat, lng: geolocationData.lon },
+	// };
+
+	// INITIALIZES MAP
+	// map = new google.maps.Map(document.getElementById('map'), options);
+	
+	
+	// function InitMap(data){
+		// OPTIONS FOR MAP
+	// }
+
+
+
+	// function getDataFromMeetUp(search, callback) {
+	// 	const query = {
+	// 		text: `${search}`,
+	// 		page: '7'	
+	// 	}
+
+	// 	const settings = {
+	// 		url: GEOLOCATION_URL,
+	// 		data: query,
+	// 		dataType: 'jsonp',
+	// 		type: 'GET',
+	// 		success: callback
+	// 	}
+
+	// 	$.ajax(settings);
+	// }
+
 
 	//GETS THE DATA FROM MEETUP API
 	function getDataFromMeetUp(search, callback) {
-		const query = {
-			key: `${MEETUP_API_KEY}`,
-			sign: "true",
-			text: `${search}`,
-			page: '7'	
-		}
 
-		const settings = {
-			url: MEETUP_SEARCH_URL,
-			data: query,
-			dataType: 'jsonp',
-			type: 'GET',
-			success: callback
-		}
+		// GetGeolocation(data);
+		function displayGeolocation(data) {
 
-		$.ajax(settings);
+			const query = {
+				key: `${MEETUP_API_KEY}`,
+				sign: "true",
+				text: `${search}`,
+				page: '7'
+			}
+
+			const settings = {
+				url: MEETUP_SEARCH_URL,
+				data: query,
+				dataType: 'jsonp',
+				type: 'GET',
+				success: callback
+			}
+
+			$.ajax(settings);
+		}
 	}
+
+
 
 	//GETS DATA FROM FOURSQUARE API
 	function getDataFromFoursquare(search, callback) {
@@ -68,12 +111,12 @@ $(document).ready(function () {
 			const target = $(event.currentTarget).find('#input-form');
 			const query = target.val();
 			target.val("");
-			getDataFromMeetUp(query, GetDataApi);
+			getDataFromMeetUp(query, getDataApi);
 		})
 	}
 
 	//GETS THE DATA USED FOR THE MARKERS
-	function GetDataApi(data) {
+	function getDataApi(data) {
 
 		console.log(data);
 
@@ -85,21 +128,20 @@ $(document).ready(function () {
 			if (results[idx]) {
 				if (typeof results[idx].venue !== "undefined") {
 					//CALLS FXN TO GET FOURSQUARE DATA
-					// getDataFromFoursquare(`${results[idx].venue.city}, ${results[idx].venue.state}`, FoursquareMapOptions)
-					getDataFromFoursquare(`${results[idx].venue.lat}, ${results[idx].venue.lon}`, FoursquareMapOptions);
+					getDataFromFoursquare(`${results[idx].venue.lat}, ${results[idx].venue.lon}`, foursquareMapOptions);
 				}
 			}
 			idx++;
 		}
 
 		//INITIALIZES
-		MeetupMapOptions(results);
+		meetupMapOptions(results);
 
 		// console.log(results)
 	}
 
 	//INITIALIZES THE MARKERS FROM FOURSQUARE
-	function FoursquareMapOptions(data) {
+	function foursquareMapOptions(data) {
 
 		let idx = 0;
 
@@ -135,7 +177,7 @@ $(document).ready(function () {
 	}
 
 	//INITIALIZES THE MARKERS FROM MEETUP
-	function MeetupMapOptions(result) {
+	function meetupMapOptions(result) {
 		// console.log(result.venue);
 
 		let idx = 0;
@@ -166,6 +208,7 @@ $(document).ready(function () {
 			idx++;
 		}
 	}
+
 
 	$(watchSubmit);
 
