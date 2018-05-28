@@ -11,31 +11,43 @@ $(document).ready(function () {
 
 	const FOOD_LOCATION_IMAGE = 'http://www.clker.com/cliparts/R/g/O/v/U/h/google-maps-marker-for-residencelamontagne-hi.png';
 
-	//DECLARE MAP VARIABLE
-	let map;
-	let geolocationData
-
 	//GETS GEOLOCATION OF USER
-	function GetGeolocation(callback) {
-		$.getJSON(GEOLOCATION_URL, callback)
+	// let geolocationData = $.getJSON(GEOLOCATION_URL);
+	// let geoTest = geolocationData.responseJSON;
+
+	// console.log(geolocationData);
+	// console.log(geoTest.lat);
+	let map;
+
+
+	function getLocation(callback) {
+		$.getJSON(GEOLOCATION_URL, callback);
+	}
+	let lat;
+	let lon;
+
+	getLocation(InitMap);
+
+	function InitMap(data) {
+
+		console.log("hai");
+
+		let options = {
+			zoom: 10,
+			center: { lat: data.lat, lng: data.lon }
+		};
+
+		lat = data.lat;
+		lon = data.lon;
+
+		console.log(lat);
+
+		//DECLARE AND INITIALIZE MAP VARIABLE
+	 	map = new google.maps.Map(document.getElementById('map'), options);
+
 	}
 
-	// GetGeolocation(displayGeolocation);
-
-	// let options = {
-	// 	zoom: 10,
-	// 	center: { lat: geolocationData.lat, lng: geolocationData.lon },
-	// };
-
-	// INITIALIZES MAP
-	// map = new google.maps.Map(document.getElementById('map'), options);
 	
-	
-	// function InitMap(data){
-		// OPTIONS FOR MAP
-	// }
-
-
 
 	// function getDataFromMeetUp(search, callback) {
 	// 	const query = {
@@ -57,17 +69,18 @@ $(document).ready(function () {
 
 	//GETS THE DATA FROM MEETUP API
 	function getDataFromMeetUp(search, callback) {
-
 		// GetGeolocation(data);
-		function displayGeolocation(data) {
 
+		getLocation(function (data) {
 			const query = {
 				key: `${MEETUP_API_KEY}`,
 				sign: "true",
 				text: `${search}`,
-				page: '7'
+				page: '7',
+				lat: `${data.lat}`,
+				lon: `${data.lon}`
 			}
-
+	
 			const settings = {
 				url: MEETUP_SEARCH_URL,
 				data: query,
@@ -75,12 +88,10 @@ $(document).ready(function () {
 				type: 'GET',
 				success: callback
 			}
-
+	
 			$.ajax(settings);
-		}
+		})
 	}
-
-
 
 	//GETS DATA FROM FOURSQUARE API
 	function getDataFromFoursquare(search, callback) {
