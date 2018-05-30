@@ -21,11 +21,24 @@ body{
     width: 400px;
     height: 40px;
     font-size: 24px;
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: white;
 }
 
 #searchButton{
-    height: 47px;
-    font-size: 24px;
+    height: 40px;
+    font-size: 26px;
+    border-style: solid;
+    color: #7F4343;
+    float: right;
+    border-radius: 50%;
+    background: white;
+    border-color: white;
+    align-items: center;
 }
 
 #resultsArea{
@@ -43,3 +56,15 @@ footer{
     color: black; 
     margin-bottom: 20px;
 }
+
+#searchBarContainer{
+    display: inline-block;
+    background: #2f3640;
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px;
+    width: 450px;
+    text-align: center;
+}
+
+

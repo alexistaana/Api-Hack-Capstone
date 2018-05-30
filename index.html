@@ -2,38 +2,42 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
     <title>Api-Hack Capstone</title>
+    <meta charset="utf-8" name="description" content="A simple app that combines Foursquare and Meetup APIs, allowing users search for meetups while also displaying nearby food places">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="media.css">
     <link href="https://fonts.googleapis.com/css?family=Oswald|Skranji" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
 </head>
 
 <body style="margin: 0;">
 
     <!-- LOGO AREA -->
     <header role="banner" id="logoHeader">
-        <h1 style="text-align: center; font-family: 'Skranji', cursive; font-size: 4em;
-       ">Four-Up</h1>
+        <h1 style="text-align: center; font-family: 'Skranji', cursive; font-size: 4em;">Four-Up
+        </h1>
     </header>
 
     <main>
         <!-- WELCOME AND INSTRUCTIONS -->
         <header id="welcomeDesc" role="heading">
             <h2 style="font-size: 3em;">Welcome!</h2>
-            <p style="font-size: 25px;">This app is a mix of the Meetup and Foursquare APIs and with the help of Google Maps! It is used to search for
-                meetups within your area and will also show the surrounding light food or drink places near the meetup! Red markers represent the meetups
-                while green markers reprenset the food or drink places.
+            <p style="font-size: 25px;"> This app is used to search for meetups within your area and will also show the surrounding light food or drink
+                places near the meetup! Red markers represent the meetups while green markers represent the food and, or
+                drink places.
             </p>
         </header>
 
         <!-- SEARCHBOX  -->
-        <section id="searchBox" role="searchbox">
+        <section id="searchBox" role="searchbox" style="margin-bottom: 30px">
             <h2>Please input a meetup you would like to go!</h2>
             <div id="searchBarContainer">
-                <form action="#" id="search-form" style="margin-bottom: 30px">
-                    <input type="text" id="input-form" class="searchMobile">
-                    <button id="searchButton" class="searchMobile">Find</button>
+                <form action="#" id="search-form">
+                    <input type="text" id="input-form" placeholder="networking, hiking, etc...">
+                    <button id="searchButton">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </form>
             </div>
         </section>
@@ -43,7 +47,7 @@
 
         </div>
 
-        <!-- LINE BREAK -->
+        <!-- WHITE LINE STYLING -->
         <hr>
 
     </main>

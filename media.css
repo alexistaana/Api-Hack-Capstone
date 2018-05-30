@@ -5,17 +5,42 @@
 
 }
 
-@media only screen and (max-width: 480px){
+@media only screen and (max-width: 546px){
     #searchBox{
         padding: 0px;
     }
 
-    #input-form{
+    #searchButton{
         width: 100%;
+        margin-top: 11px;
+        margin-left: -18px;
+        border-radius: 0px;
+        float: none;
+    }
+    #searchBarContainer{
+        width: 100%;
+        border-radius: 0px;
     }
 
-    .searchMobile{
-        width: 100%;
+    #searchBox{
+        height: 160px;
     }
 }
 
+@media only screen and (max-width: 393px){
+    #searchBox{
+        height: 180px;
+    }
+}
+
+@media only screen and (max-width: 209px){
+    #searchBox{
+        height: 210px;
+    }
+}
+
+@media only screen and (max-width: 158px){
+    #searchBox{
+        height: 240px;
+    }
+}
