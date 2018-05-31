@@ -3,7 +3,7 @@ Four-Up
 
 Live-App Link
 ---
-https://alexistaana.github.io/Api-Hack-Capstone/
+https://alexistaana.github.io/Four-Up/
 
 Description
 ---
@@ -33,3 +33,7 @@ Built With
 * Foursquare
 * Google Maps
 * Geolocation API
+
+*NOTICE*
+---
+Google Maps may not load due to "insecure blocked content" popping up, it is just the Geolocation API trying to get your position, please allow the script to load the map. On Google Chrome it should appear as a shield at the top right corner of the search bar.
