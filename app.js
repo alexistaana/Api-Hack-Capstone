@@ -9,7 +9,7 @@ $(document).ready(function () {
 
 	const GEOLOCATION_URL = 'http://ip-api.com/json'
 
-	//FOURSQUARE MARKER 
+	//FOURSQUARE MARKER IMAGE
 	const FOOD_LOCATION_IMAGE = 'http://www.clker.com/cliparts/R/g/O/v/U/h/google-maps-marker-for-residencelamontagne-hi.png';
 
 	//DECLARE MAP VARIABLE
@@ -132,6 +132,7 @@ $(document).ready(function () {
 				animation: google.maps.Animation.DROP
 			});
 
+			//INFO OF MARKER
 			let infoWindowFourSquare = new google.maps.InfoWindow({
 				content: `<h1 style="margin-bottom:5px;">${data.response.venues[idx].name}</h1>
 					  <h2 style="margin-top:5px;">${data.response.venues[idx].location.address}, <br> ${data.response.venues[idx].location.city}, ${data.response.venues[idx].location.state} </h2>`
@@ -156,6 +157,7 @@ $(document).ready(function () {
 		while (idx < 6) {
 			if (result[idx]) {
 				if (typeof result[idx].venue !== "undefined") {
+
 					//ADDS MARKER
 					let marker = new google.maps.Marker({
 						animation: google.maps.Animation.DROP,
@@ -163,6 +165,7 @@ $(document).ready(function () {
 						map: map
 					});
 
+					//INFO OF MARKER
 					let infoWindow = new google.maps.InfoWindow({
 						content: `<h1 style="margin-bottom:5px;">${result[idx].name}</h1>
 								<h2 style="margin-bottom:5px; margin-top:5px;">${result[idx].venue.address_1}, <br> ${result[idx].venue.city}, ${result[idx].venue.state}</h2>

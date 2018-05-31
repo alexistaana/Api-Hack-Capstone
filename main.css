@@ -1,23 +1,23 @@
-body{
+body {
     background-color: #7F4343;
     color: #FFFFFF;
-    font-family: 'Oswald' , sans-serif;
-} 
+    font-family: 'Oswald', sans-serif;
+}
 
-#logoHeader{
+#logoHeader {
     margin: 0px;
     padding: 30px;
     margin-bottom: 50px;
     border-bottom: solid white;
 }
 
-#welcomeDesc, #searchBox{
+#welcomeDesc, #searchBox {
     text-align: center;
     padding-left: 60px;
     padding-right: 60px;
 }
 
-#input-form{
+#input-form {
     width: 400px;
     height: 40px;
     font-size: 24px;
@@ -29,7 +29,7 @@ body{
     color: white;
 }
 
-#searchButton{
+#searchButton {
     height: 40px;
     font-size: 26px;
     border-style: solid;
@@ -41,23 +41,28 @@ body{
     align-items: center;
 }
 
-#resultsArea{
+#searchButton:hover {
+    color: rgb(6, 114, 6);
+}
+
+#resultsArea {
     text-align: center;
     font-size: 1.5em;
 }
 
-footer{
+footer {
     text-align: center;
 }
 
-#map{
-    width:1000px;height:600px;
-    margin:0px auto; 
-    color: black; 
+#map {
+    width: 1000px;
+    height: 600px;
+    margin: 0px auto;
+    color: black;
     margin-bottom: 20px;
 }
 
-#searchBarContainer{
+#searchBarContainer {
     display: inline-block;
     background: #2f3640;
     height: 40px;
@@ -66,5 +71,3 @@ footer{
     width: 450px;
     text-align: center;
 }
-
-
