@@ -12,50 +12,56 @@
 </head>
 
 <body style="margin: 0;">
-
-    <!-- LOGO AREA -->
-    <header role="banner" id="logoHeader">
-        <h1 style="text-align: center; font-family: 'Lato', cursive; font-size: 4em;">Four-Up
-        </h1>
-    </header>
-
     <main>
-        <!-- WELCOME AND INSTRUCTIONS -->
-        <header id="welcomeDesc" role="heading">
-            <h2 style="font-size: 3em;">Welcome!</h2>
-            <p style="font-size: 25px;"> This app is used to search for meetups within your area and will also show the surrounding light food or drink
-                places near the meetup! Red markers represent the meetups while green markers represent the food and, or
-                drink places.
-            </p>
-        </header>
+        <!-- LOGO AREA -->
+        <section id="background">
+            <div id="overlay">
+                <header role="banner" id="logoHeader">
+                    <h1 style="text-align: center; font-family: 'Lato', cursive; font-size: 4em;">Four-Up
+                    </h1>
+                </header>
 
-        <!-- SEARCHBOX  -->
-        <section id="searchBox" role="searchbox" style="margin-bottom: 30px">
-            <h2>Please input a meetup you would like to go!</h2>
-            <div id="searchBarContainer">
-                <form action="#" id="search-form">
-                    <input type="text" id="input-form" placeholder="networking, hiking, etc...">
-                    <button id="searchButton">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
+                <!-- SEARCHBOX  -->
+                <section id="searchBox" role="searchbox" style="margin-bottom: 30px">
+
+                    <!-- <div id="searchBarContainer"> -->
+                    <form action="#" id="search-form">
+
+                        <h2>Please enter the city you would like to search the meetup!</h2>
+                        <div class="searchBarContainer">
+                            <input type="text" id="input-form-one" placeholder="San Diego, Los Angeles, etc...">
+                        </div>
+                        <h2>Please input a meetup you would like to go!</h2>
+                        <div class="searchBarContainer">
+                            <input type="text" id="input-form-two" placeholder="networking, hiking, etc...">
+                        </div>
+                        <button id="searchButton" style="display: none;" disabled="disabled">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                    <!-- </div> -->
+                </section>
+
+                <!-- MAP AREA -->
+                <section id="resultsArea" style="display: none;">
+                    <form style="padding: 30px;">
+                        <button id="searchAgainBtn" data-hover="YEA!">
+                                AGAIN?
+                        </button>
+                    </form>
+                    <div id="map" aria-live="polite">
+
+                    </div>
+                </section>
+
             </div>
         </section>
-
-        <!-- MAP AREA -->
-        <div id="map" aria-live="polite">
-
-        </div>
-
-        <!-- WHITE LINE STYLING -->
-        <hr>
-
     </main>
-
 </body>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQDYRHABdT_J5mNVNfuG0txLjxWhIjLpo" async defer></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="styling.js"></script>
 <script type="text/javascript" src="app.js"></script>
 
 </html>

@@ -20,8 +20,9 @@ $(document).ready(function () {
 		$.getJSON(GEOLOCATION_URL, callback);
 	}
 
-	//INITIALIZES MAP
+	// INITIALIZES MAP
 	getLocation(function (data) {
+		console.log('hai');
 		let options = {
 			zoom: 10,
 			center: { lat: data.lat, lng: data.lon }
@@ -83,10 +84,14 @@ $(document).ready(function () {
 	function watchSubmit() {
 		$('#search-form').submit(event => {
 			event.preventDefault();
-			const target = $(event.currentTarget).find('#input-form');
+			const target = $(event.currentTarget).find('#input-form-two');
 			const query = target.val();
 			target.val("");
 			getDataFromMeetUp(query, getDataApi);
+
+			$('#searchBox').hide(1500);
+			$('#logoHeader').hide(1500);
+			$('#resultsArea').show(1500);
 		})
 	}
 

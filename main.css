@@ -1,14 +1,41 @@
 body {
-    background-color: #7F4343;
+    /* background-color: #7F4343; */
+    /* background: no-repeat; */
     color: #FFFFFF;
     font-family: 'Oswald', sans-serif;
+}
+
+#background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 1300px;
+    width: 100%;
+    /* background:  rgb(73, 73, 73); */
+}
+
+#overlay {
+    position: relative;
+    background-image: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)), url('img/img1.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(73, 73, 73);
+    
+}
+
+#map {
+    opacity: 100;
 }
 
 #logoHeader {
     margin: 0px;
     padding: 30px;
-    margin-bottom: 50px;
-    border-bottom: solid white;
+    margin-bottom: 20px;
 }
 
 #welcomeDesc, #searchBox {
@@ -17,7 +44,7 @@ body {
     padding-right: 60px;
 }
 
-#input-form {
+#input-form-one, #input-form-two {
     width: 400px;
     height: 40px;
     font-size: 24px;
@@ -29,20 +56,47 @@ body {
     color: white;
 }
 
+#searchAgainBtn {
+    height: 50px;
+    width: 180px;
+    font-size: 20px;
+    border-style: solid;
+    color: white;
+    border-radius: 40px;
+    background: rgb(73, 73, 73);
+    border-color: rgb(73, 73, 73);
+    align-items: center;
+}
+
+#searchAgainBtn:hover{
+    cursor: pointer;
+    
+}
+
+#seachAgainBtn:hover:after{
+    content: attr(data-hover);
+}
+
+
+
 #searchButton {
     height: 40px;
     font-size: 26px;
     border-style: solid;
     color: #7F4343;
     float: right;
-    border-radius: 50%;
+    border-radius: 40px;
     background: white;
     border-color: white;
     align-items: center;
+    margin-top: 20px;
 }
 
 #searchButton:hover {
     color: rgb(6, 114, 6);
+    background: #7F4343;
+    border-color: #7F4343;
+    cursor: pointer;
 }
 
 #resultsArea {
@@ -62,12 +116,15 @@ footer {
     margin-bottom: 20px;
 }
 
-#searchBarContainer {
+.searchBarContainer {
     display: inline-block;
     background: #2f3640;
     height: 40px;
     border-radius: 40px;
     padding: 10px;
-    width: 450px;
     text-align: center;
+}
+
+#search-form {
+    display: inline-grid;
 }
