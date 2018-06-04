@@ -1,3 +1,10 @@
+/* @import "compass/css3";
+
+@-webkit-keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+} */
+
 body {
     /* background-color: #7F4343; */
     /* background: no-repeat; */
@@ -9,7 +16,7 @@ body {
     position: absolute;
     left: 0;
     top: 0;
-    height: 1300px;
+    height: 100%;
     width: 100%;
     /* background:  rgb(73, 73, 73); */
 }
@@ -25,7 +32,17 @@ body {
     height: 100%;
     width: 100%;
     background-color: rgb(73, 73, 73);
-    
+
+    /* -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    -webkit-animation-name: fade-in;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-delay: 2s; */
 }
 
 #map {
@@ -70,12 +87,9 @@ body {
 
 #searchAgainBtn:hover{
     cursor: pointer;
-    
+
 }
 
-#seachAgainBtn:hover:after{
-    content: attr(data-hover);
-}
 
 
 

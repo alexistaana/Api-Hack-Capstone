@@ -7,6 +7,9 @@ $(document).ready(function () {
 	const FOURSQUARE_APP_ID = 'YM3HNDZMFJVFKCYLPRZ3RLGDHUREH5WMTREMZOUYBJ4TCQG2';
 	const FOURSQUARE_SEARCH_URL = 'https://api.foursquare.com/v2/venues/search';
 
+	const GOOGLE_GEOCODING_KEY = 'AIzaSyDQDYRHABdT_J5mNVNfuG0txLjxWhIjLpo';
+	const GOOGLE_GEOCODING_URL = 'https://maps.googleapis.com/maps/api/geocode/json?'
+
 	const GEOLOCATION_URL = 'http://ip-api.com/json'
 
 	//FOURSQUARE MARKER IMAGE
@@ -15,35 +18,45 @@ $(document).ready(function () {
 	//DECLARE MAP VARIABLE
 	let map;
 
-	//GETS GEOLOCATION OF USER
-	function getLocation(callback) {
-		$.getJSON(GEOLOCATION_URL, callback);
+	function getGeocodingLocation(search, callback) {
+		const query = {
+			address: `${search}`,
+			key: GOOGLE_GEOCODING_KEY
+		}
+
+		const settings = {
+			url: GOOGLE_GEOCODING_URL,
+			data: query,
+			dataType: 'json',
+			type: 'GET',
+			success: callback
+		}
+
+		$.ajax(settings);
 	}
 
 	// INITIALIZES MAP
-	getLocation(function (data) {
-		console.log('hai');
-		let options = {
-			zoom: 10,
-			center: { lat: data.lat, lng: data.lon }
-		};
+	function initMap(data) {
+			let options = {
+				zoom: 10,
+				center: { lat: data.results[0].geometry.location.lat, lng: data.results[0].geometry.location.lng }
+			};
+			//DECLARE AND INITIALIZE MAP VARIABLE
+			map = new google.maps.Map(document.getElementById('map'), options);
+	}
 
-		//DECLARE AND INITIALIZE MAP VARIABLE
-		map = new google.maps.Map(document.getElementById('map'), options);
-	})
 
 	//GETS THE DATA FROM MEETUP API
-	function getDataFromMeetUp(search, callback) {
+	function getDataFromMeetUp(search, callback, location) {
 
-		//CALLS GETLOCATION TO RETRIEVE LOCATION OF USER
-		getLocation(function (data) {
+		getGeocodingLocation(location , function (data) {
 			const query = {
 				key: MEETUP_API_KEY,
 				sign: "true",
 				text: `${search}`,
 				page: '8',
-				lat: `${data.lat}`,
-				lon: `${data.lon}`
+				lat: `${data.results[0].geometry.location.lat}`,
+				lon: `${data.results[0].geometry.location.lng}`
 			}
 
 			const settings = {
@@ -84,10 +97,14 @@ $(document).ready(function () {
 	function watchSubmit() {
 		$('#search-form').submit(event => {
 			event.preventDefault();
-			const target = $(event.currentTarget).find('#input-form-two');
-			const query = target.val();
-			target.val("");
-			getDataFromMeetUp(query, getDataApi);
+			const targetOne = $(event.currentTarget).find('#input-form-one');
+			const targetTwo = $(event.currentTarget).find('#input-form-two');
+			const queryOne = targetOne.val();
+			const queryTwo = targetTwo.val();
+			targetOne.val("");
+			targetTwo.val("");
+			getGeocodingLocation(queryOne, initMap);
+			getDataFromMeetUp(queryTwo, getDataApi, queryOne);
 
 			$('#searchBox').hide(1500);
 			$('#logoHeader').hide(1500);
@@ -188,5 +205,10 @@ $(document).ready(function () {
 	}
 
 
-	$(watchSubmit);
+	function init() {
+		$(watchSubmit);
+	}
+
+	$(init);
+
 });
