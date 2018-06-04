@@ -36,4 +36,4 @@ Built With
 
 *NOTICE*
 ---
-Google Maps may not load due to "insecure blocked content" popping up, it is just the Geolocation API trying to get your position, please allow the script to load the map. On Google Chrome it should appear as a shield at the top right corner of the search bar.
+Google Maps may not load due to "insecure blocked content" popping up, it is just the Geolocation API trying to get your position, please allow the script to load in order for the map to appear.
