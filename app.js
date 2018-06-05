@@ -13,7 +13,7 @@ $(document).ready(function () {
 	const GEOLOCATION_URL = 'http://ip-api.com/json'
 
 	//FOURSQUARE MARKER IMAGE
-	const FOOD_LOCATION_IMAGE = 'http://www.clker.com/cliparts/R/g/O/v/U/h/google-maps-marker-for-residencelamontagne-hi.png';
+	const FOOD_LOCATION_IMAGE = 'img/fsMarker.png';
 
 	//DECLARE MAP VARIABLE
 	let map;
