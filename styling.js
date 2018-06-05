@@ -43,7 +43,7 @@ $(document).ready(function () {
 
     //WHEN SEARCH AGAIN BTN IS CLICKED, IT WILL HIDE THE RESULTS AREA AND SHOWS THE SEARCH FORMS AGAIN
     function searchAgain() {
-        $('#searchAgainBtn').click(function (e) {
+        $('#searchAgainBtn').click(function (event) {
             event.preventDefault();
             $('#resultsArea').fadeOut(1000, function(e){
                 $('#searchBox').fadeIn(1000);
