@@ -13,49 +13,57 @@
 
 <body style="margin: 0;">
     <main>
-        <!-- LOGO AREA -->
-        <section id="background">
+        <div id="background">
             <div id="overlay">
+                <!-- LOGO AREA -->
                 <header role="banner" id="logoHeader">
                     <h1 style="text-align: center; font-family: 'Lato', cursive; font-size: 4em;">Four-Up
                     </h1>
                 </header>
 
-                <!-- SEARCHBOX  -->
+                <!-- SEARCH FORM AREA  -->
                 <section id="searchBox" role="searchbox" style="margin-bottom: 30px">
-
-                    <!-- <div id="searchBarContainer"> -->
                     <form action="#" id="search-form">
 
-                        <h2>Please enter the city you would like to search the meetup!</h2>
+                        <h2 for="input-form-one">Please enter an area, city, or address you would like to search the meetup!</h2>
                         <div class="searchBarContainer">
-                            <input type="text" id="input-form-one" placeholder="San Diego, Los Angeles, etc...">
+                            <input type="text" id="input-form-one" placeholder="San Diego, Los Angeles, etc..." aria-labelledby="area of meetup">
                         </div>
-                        <h2>Please input a meetup you would like to go!</h2>
+
+                        <h2 for="input-form-two">Please input a meetup you would like to go!</h2>
                         <div class="searchBarContainer">
-                            <input type="text" id="input-form-two" placeholder="networking, hiking, etc...">
+                            <input type="text" id="input-form-two" placeholder="networking, hiking, etc..." aria-labelledby="type of meetup">
                         </div>
+
                         <button id="searchButton" style="display: none;" disabled="disabled">
                             <i class="fas fa-search"></i>
                         </button>
                     </form>
-                    <!-- </div> -->
                 </section>
 
-                <!-- MAP AREA -->
+                <!-- RESULTS AREA -->
                 <section id="resultsArea" style="display: none;">
-                    <form style="padding: 30px;">
+                    <form id="againBtnForm">
                         <button id="searchAgainBtn" data-hover="YEA!">
                             AGAIN?
                         </button>
                     </form>
+
+                    <!-- DIV WHERE MAP WILL BE GENERATED -->
                     <div id="map" aria-live="polite">
-
                     </div>
-                </section>
 
+                    <!-- ERROR PROMPTS -->
+                    <h2 id="areaFalse" style="display: none;" role="alertdialog">
+                        Sorry, the area you searched for did not exist! Please try again!
+                    </h2>
+                    <h2 id="meetupFalse" style="display: none;" role="alertdialog">
+                        Sorry, there was no meetup you searched for! Please try again!
+                    </h2>
+
+                </section>
             </div>
-        </section>
+        </div>
     </main>
 </body>
 

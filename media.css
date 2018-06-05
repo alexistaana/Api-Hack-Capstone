@@ -12,11 +12,9 @@
 
     #searchButton{
         width: 100%;
-        margin-top: 11px;
-        margin-left: -18px;
-        border-radius: 0px;
         float: none;
     }
+
     #searchBarContainer{
         width: 100%;
         border-radius: 0px;
@@ -25,22 +23,14 @@
     #searchBox{
         height: 160px;
     }
-}
 
-@media only screen and (max-width: 393px){
-    #searchBox{
-        height: 180px;
+    #searchAgainBtn{
+        padding: 0px;
+        margin-top: 30px;
+        width: 100%;
     }
-}
 
-@media only screen and (max-width: 209px){
-    #searchBox{
-        height: 210px;
-    }
-}
-
-@media only screen and (max-width: 158px){
-    #searchBox{
-        height: 240px;
+    #againBtnForm{
+        padding: 0px;
     }
 }

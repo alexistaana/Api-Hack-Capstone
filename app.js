@@ -18,6 +18,7 @@ $(document).ready(function () {
 	//DECLARE MAP VARIABLE
 	let map;
 
+	//GETS LAT AND LON OF SEARCHED AREA FROM API
 	function getGeocodingLocation(search, callback) {
 		const query = {
 			address: `${search}`,
@@ -37,37 +38,50 @@ $(document).ready(function () {
 
 	// INITIALIZES MAP
 	function initMap(data) {
+		//CHECKS IF LOCATION IS VALID
+		if (data.status != 'ZERO_RESULTS') {
 			let options = {
 				zoom: 10,
 				center: { lat: data.results[0].geometry.location.lat, lng: data.results[0].geometry.location.lng }
 			};
 			//DECLARE AND INITIALIZE MAP VARIABLE
 			map = new google.maps.Map(document.getElementById('map'), options);
+		}
+		//IF LOCATION INVALID DISPLAY ERROR MESSAGE
+		else {
+			$('#map').fadeOut(0);
+			$('#areaFalse').fadeIn(1000);
+		}
 	}
 
 
 	//GETS THE DATA FROM MEETUP API
 	function getDataFromMeetUp(search, callback, location) {
 
-		getGeocodingLocation(location , function (data) {
-			const query = {
-				key: MEETUP_API_KEY,
-				sign: "true",
-				text: `${search}`,
-				page: '8',
-				lat: `${data.results[0].geometry.location.lat}`,
-				lon: `${data.results[0].geometry.location.lng}`
-			}
+		//CALLS GEOCODING API
+		getGeocodingLocation(location, function (data) {
+			//CHECKS IF LOCATION IS VALID
+			if (data.status != 'ZERO_RESULTS') {
+				const query = {
+					key: MEETUP_API_KEY,
+					sign: "true",
+					text: `${search}`,
+					page: '8',
+					radius: '40',
+					lat: `${data.results[0].geometry.location.lat}`,
+					lon: `${data.results[0].geometry.location.lng}`
+				}
 
-			const settings = {
-				url: MEETUP_SEARCH_URL,
-				data: query,
-				dataType: 'jsonp',
-				type: 'GET',
-				success: callback
-			}
+				const settings = {
+					url: MEETUP_SEARCH_URL,
+					data: query,
+					dataType: 'jsonp',
+					type: 'GET',
+					success: callback
+				}
 
-			$.ajax(settings);
+				$.ajax(settings);
+			}
 		})
 	}
 
@@ -77,7 +91,8 @@ $(document).ready(function () {
 			client_id: FOURSQUARE_APP_ID,
 			client_secret: FOURSQUARE_API_SECRET,
 			ll: `${search}`,
-			categoryId: '56aa371be4b08b9a8d57350b,4bf58dd8d48988d16c941735,52e81612bcbc57f1066b7a0c,4bf58dd8d48988d16d941735,52e81612bcbc57f1066b7a00,4bf58dd8d48988d1d0941735,4bf58dd8d48988d147941735,4bf58dd8d48988d148941735,4bf58dd8d48988d16e941735,4bf58dd8d48988d112941735,4bf58dd8d48988d1bf941735',
+			//IDS OF DIFFERENT CATEGORIES OF FOOD
+			categoryId: '56aa371be4b08b9a8d57350b,4bf58dd8d48988d16c941735,52e81612bcbc57f1066b7a0c,4bf58dd8d48988d16d941735,52e81612bcbc57f1066b7a00,4bf58dd8d48988d1d0941735,4bf58dd8d48988d147941735,4bf58dd8d48988d148941735,4bf58dd8d48988d16e941735,4bf58dd8d48988d112941735,4bf58dd8d48988d1bf941735,4bf58dd8d48988d1d1941735,4bf58dd8d48988d1df931735,4bf58dd8d48988d16a941735,4bf58dd8d48988d179941735,4bf58dd8d48988d1e0931735,4bf58dd8d48988d16f941735,4bf58dd8d48988d153941735,4bf58dd8d48988d151941735,4bf58dd8d48988d1ca941735,56aa371be4b08b9a8d5734c7,4bf58dd8d48988d1dc931735',
 			v: '20180420',
 			radius: '15000'
 		}
@@ -103,12 +118,20 @@ $(document).ready(function () {
 			const queryTwo = targetTwo.val();
 			targetOne.val("");
 			targetTwo.val("");
+			
+			//CALLS GEOCODING TO GENERATE MAP
 			getGeocodingLocation(queryOne, initMap);
+
+			//CALLS MEETUP API TO GET MARKERS
 			getDataFromMeetUp(queryTwo, getDataApi, queryOne);
 
-			$('#searchBox').hide(1500);
-			$('#logoHeader').hide(1500);
-			$('#resultsArea').show(1500);
+			//HIDES SEARCH AREA AND SHOWS RESULTS
+			$('#searchBox').fadeOut(1000);
+			$('#logoHeader').fadeOut(1000, function (e) {
+				$('#resultsArea').fadeIn(1000);
+				$('#searchButton').fadeOut(0);
+			});
+
 		})
 	}
 
@@ -119,33 +142,39 @@ $(document).ready(function () {
 		let idx = 0;
 
 		//WHILE LOOP THAT GOES THROUGH ARRAY
-		while (idx < 6) {
-			if (results[idx]) {
-				if (typeof results[idx].venue !== "undefined") {
-					//CALLS FXN TO GET FOURSQUARE DATA
-					getDataFromFoursquare(`${results[idx].venue.lat}, ${results[idx].venue.lon}`, foursquareMapOptions);
+		if (results.length !== 0) {
+			while (idx < 7) {
+				if (results[idx]) {
+					if (typeof results[idx].venue !== "undefined") {
+						//CALLS FXN TO GET FOURSQUARE DATA
+						getDataFromFoursquare(`${results[idx].venue.lat}, ${results[idx].venue.lon}`, foursquareMapOptions);
+					}
 				}
+				idx++;
 			}
-			idx++;
-		}
 
-		//INITIALIZES MEETUP MARKER
-		meetupMapOptions(results);
+			//INITIALIZES MEETUP MARKER
+			meetupMapOptions(results);
+		}
+		//IF NO MEETUP FOUND DISPLAY ERROR MESSAGE
+		else {
+			$('#map').fadeOut(0);
+			$('#meetupFalse').fadeIn(1000);
+		}
 	}
 
 	//INITIALIZES THE MARKERS FROM FOURSQUARE
 	function foursquareMapOptions(data) {
 
 		let idx = 0;
-
 		let icon = {
 			url: FOOD_LOCATION_IMAGE,
 			scaledSize: new google.maps.Size(27, 43)
 		}
 
-
 		//WHILE LOOP THAT GOES THROUGH ARRAY
-		while (idx < 3) {
+		while (idx < 4) {
+
 			//ADDS MARKERS
 			let foursquareMarker = new google.maps.Marker({
 				position: { lat: data.response.venues[idx].location.lat, lng: data.response.venues[idx].location.lng },
@@ -161,6 +190,7 @@ $(document).ready(function () {
 
 			});
 
+			//ADDS A LISTENER FOR INFO WINDOW
 			foursquareMarker.addListener('click', function () {
 				infoWindowFourSquare.open(map, foursquareMarker);
 			});
@@ -176,7 +206,7 @@ $(document).ready(function () {
 		let idx = 0;
 
 		//WHILE LOOP GOES THROUGH ARRAY
-		while (idx < 6) {
+		while (idx < 7) {
 			if (result[idx]) {
 				if (typeof result[idx].venue !== "undefined") {
 
@@ -195,6 +225,7 @@ $(document).ready(function () {
 								MEETUP PAGE</a></h2>`
 					});
 
+					//ADDS A LISTENER FOR INFO WINDOW
 					marker.addListener('click', function () {
 						infoWindow.open(map, marker);
 					});
@@ -204,11 +235,11 @@ $(document).ready(function () {
 		}
 	}
 
-
+	//FUNCTION THAT CALLS ALL OTHER FUNCTIONS
 	function init() {
 		$(watchSubmit);
 	}
 
+	//CALLS INIT
 	$(init);
-
 });

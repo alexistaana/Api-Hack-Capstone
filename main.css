@@ -41,7 +41,7 @@ body {
 }
 
 #input-form-one, #input-form-two {
-    width: 400px;
+    width: 100%;
     height: 40px;
     font-size: 24px;
     border: none;
@@ -54,7 +54,7 @@ body {
 
 #searchAgainBtn {
     height: 50px;
-    width: 180px;
+    width: 300px;
     font-size: 20px;
     border-style: solid;
     color: white;
@@ -117,4 +117,12 @@ footer {
 
 #search-form {
     display: inline-grid;
+}
+
+#againBtnForm{
+    padding: 30px;
+}
+
+#areaFalse, #meetupFalse{
+    margin-top: 300px;
 }
