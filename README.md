@@ -7,7 +7,7 @@ https://alexistaana.github.io/Four-Up/
 
 Description
 ---
-An app that lets the user search for meetups around his/her. Additionally showing light food and or drink places around the meetup area.
+An app that lets the user search for meetups within the searched area. Additionally showing light food and or drink places around the meetup area.
 
 Motivation
 ---
