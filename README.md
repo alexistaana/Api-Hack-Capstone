@@ -1,6 +1,9 @@
 Four-Up
 ===
 
+### *DEVELOPER NOTE*
+App currently unavailble due to Meetup API key being decommissioned by Meetup. Will update to use OAuth authorization. 
+
 Live-App Link
 ---
 https://alexistaana.github.io/Four-Up/
